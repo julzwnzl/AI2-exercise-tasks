@@ -44,7 +44,8 @@ def train_one_epoch(model, dataloader, criterion, optimizer, device, log_interva
     """
     # TODO: Set the model to training mode (.train).
     #       This enables dropout and batch normalization updates.
-
+    model.train()
+    
 
     running_loss = 0.0
     running_correct = 0
@@ -54,7 +55,8 @@ def train_one_epoch(model, dataloader, criterion, optimizer, device, log_interva
         # TODO: Complete the training step.
         #
         #   Step 1: Move images and labels to the device using .to(device).
-        #
+        
+        
         #   Step 2: Clear old gradients from the optimizer.
         #
         #   Step 3: Forward pass — get model outputs from the images.
@@ -65,7 +67,7 @@ def train_one_epoch(model, dataloader, criterion, optimizer, device, log_interva
         #   Step 5: Backward pass — compute gradients from the loss.
         #
         #   Step 6: Update weights with the optimizer.
-
+        
 
         # --- Accumulate metrics (do not modify) ---
         batch_size = images.size(0)

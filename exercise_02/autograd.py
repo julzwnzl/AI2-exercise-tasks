@@ -37,17 +37,18 @@ print(x.grad.item())
 #         (Power rule: d/dx[xⁿ] = n·xⁿ⁻¹)
 #         Write your derivative as a comment below.
 #
-# dy/dx = ???
+# dy/dx = 9 * x ** 2 - 4 * x
 
 # Step 2: Substitute x = 4.0 into your derivative and compute the
 #         numerical value by hand. Write it as a comment.
 #
-# dy/dx at x = 4.0 = ???
+# dy/dx at x = 4.0 = 129
 
 # Step 3: Compare your manual result with x.grad from Task 1.
 #         Do they match?
 #
 # Answer:
+# Solution = True
 
 
 # ===========================================================================

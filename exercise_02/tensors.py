@@ -70,7 +70,9 @@ print(x.shape)
 # Step 1: Convert to PyTorch's CHW format using .permute().
 #         You need to reorder dimensions: dim 2 → 0, dim 0 → 1, dim 1 → 2.
 # Step 2: Print both shapes to confirm (64, 64, 3) → (3, 64, 64).
-
+any = torch.randn(64, 64, 3)
+hwc = torch.randn(64, 64, 3)
+cwh = hwc.permute(2, 0, 1)
 
 # ===========================================================================
 # Task 5: Squeeze and Unsqueeze
@@ -84,6 +86,9 @@ print(x.shape)
 #
 # This pattern is common: models expect batched input [B, C, H, W],
 # so a single image needs unsqueeze before passing through.
+squ_tensor = torch.randn(3, 128, 128)
+unsqu_tensor = squ_tensor.unsqueeze(0)  # Add batch dimension
+print(unsqu_tensor.shape)
 
 
 # ===========================================================================
@@ -98,6 +103,9 @@ print(x.shape)
 # Use .view() or .reshape(). The batch dimension (4) stays, everything
 # else gets flattened into one dimension. You can pass -1 to let
 # PyTorch infer the flattened size automatically.
+rnd_tensor = torch.randn(4, 16, 8, 8)
+flattened = rnd_tensor.view(rnd_tensor.size(0), -1)
+print(flattened.shape)
 
 
 # ===========================================================================
@@ -111,3 +119,8 @@ print(x.shape)
 #    Compute the mean pixel value across the batch dimension (dim=0).
 #    Print the resulting shape — should be (3, 32, 32).
 #    This is how dataset mean is computed for normalization.
+
+tensor_one = torch.randn(3, 3)
+tensor_two = torch.randn(3, 3)
+elementwise_product = tensor_one * tensor_two
+matrix_product = tensor_one @ tensor_two

@@ -12,6 +12,7 @@ This script requires sample images in:
         ├── img1.jpg, img2.jpg, img3.jpg
 """
 
+from fileinput import filename
 import os
 from PIL import Image
 
@@ -56,23 +57,39 @@ class SimpleImageDataset(Dataset):
         #   Step 1: Create a mapping from class name to integer index.
         #           e.g. {"class_a": 0, "class_b": 1} (Hint: Use .enumerate() to get the index)
         #           Store as self.class_to_idx.
-        self.class_to_idx = None
+        self.class_to_idx = {
+            class_name: idx for idx, class_name in enumerate(self.classes)
+        }
         #   Step 2: Build a list of (file_path, label) tuples.
         #           Loop over each class folder, then over each file inside it.
         #           Store the full path and the integer label.
         #           Store as self.samples.
-        self.samples = None
+        self.samples = []
+            (os.path.join(root_dir, class_name, filename), self.class_to_idx[class_name])
+            for class_name in self.classes:
+                class_dir = os.path.join(root_dir, class_name)
+                label = self.class_to_idx[class_name]
+                for fname in sorted(os.listdir(class_dir)):
+                    filepath = os.path.join(class_dir, fname)
+                    if os.path.isfile(filepath):
+                        self.samples.append((filepath, label))
+            
+        
 
     def __len__(self):
         #   Return the total number of samples.
-        pass
+        return len(self.samples)
 
     def __getitem__(self, idx):
         #   Step 1: Get the file path and label from self.samples[idx].
         #   Step 2: Open the image with PIL and convert to "RGB".
         #   Step 3: Apply self.transform if it is not None.
         #   Step 4: Return (image, label).
-        pass
+        file_path, label = self.samples[idx]
+        image = Image.open(file_path).convert("RGB")
+        if self.transform:
+            image = self.transform(image)
+        return image, label
 
 if __name__ == "__main__":
     # ===========================================================================
@@ -80,8 +97,8 @@ if __name__ == "__main__":
     # ===========================================================================
     # Step 1: Instantiate SimpleImageDataset with SAMPLE_DIR
     #         and the transform from Task 1.
-    dataset = None
-    dataloader = None
+    dataset = SimpleImageDataset(SAMPLE_DIR, transform=transform)
+    dataloader = DataLoader(dataset, batch_size=2, shuffle=True, num_workers=0)
     #
     # Step 2: Print len(dataset) and dataset.classes.
     #
