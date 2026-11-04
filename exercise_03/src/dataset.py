@@ -43,9 +43,7 @@ class PlantWildDataset(Dataset):
             if os.path.isdir(os.path.join(root_dir, d))
         ])
 
-        # TODO: class-to-index mapping, and samples list.
-        #
-        #
+        # class-to-index mapping, and samples list.
         #   Step 1: Create a dictionary mapping each class name to its
         #           integer index: {"apple_scab": 0, "tomato_blight": 1, ...}
         #           The indices follow the sorted order from Step 1.
@@ -85,9 +83,10 @@ class PlantWildDataset(Dataset):
         #
         #   Step 1: Get the file path and label from self.samples[idx].
         #   Step 2: Open the image with PIL and convert to "RGB".
+        #            hint: image = Image.open(img_path).convert("RGB")
         #           Some images may be grayscale or RGBA — converting
         #           to RGB ensures a consistent 3-channel input.
-        #   Step 3: Apply self.transform if it is not None.
+        #   Step 3: Apply self.transform() if it is not None.
         #   Step 4: Return (image, label).
         file_path, label = self.samples[idx]
         image = Image.open(file_path).convert("RGB")

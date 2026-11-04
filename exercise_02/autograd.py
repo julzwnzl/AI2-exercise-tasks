@@ -37,18 +37,18 @@ print(x.grad.item())
 #         (Power rule: d/dx[xⁿ] = n·xⁿ⁻¹)
 #         Write your derivative as a comment below.
 #
-# dy/dx = 9 * x ** 2 - 4 * x
+#dy/dx = 9 * x ** 2 - 4 * x
 
 # Step 2: Substitute x = 4.0 into your derivative and compute the
 #         numerical value by hand. Write it as a comment.
 #
-# dy/dx at x = 4.0 = 129
+#dy/dx at x = 4.0 = 129
 
 # Step 3: Compare your manual result with x.grad from Task 1.
 #         Do they match?
 #
 # Answer:
-# Solution = True
+#Solution = True
 
 
 # ===========================================================================
@@ -67,18 +67,28 @@ print(x.grad.item())
 #
 # Important: Each tensor can only have .backward() called once.
 # You need a fresh tensor for this task, not the one from Task 1.
-x2 = None
+x2 = torch.tensor(2.0, requires_grad=True)
+f = 5 * x2 ** 2 - 4 * x2 + 7
+f.backward()
+print("\nTask 3: second function")
+print(x2.grad.item())
 
 
 # ===========================================================================
 # Task 4: torch.no_grad()
 # ===========================================================================
 # Step 1: Create a tensor x3 with value 5.0 and requires_grad=True.
-x3 = None
+x3 = torch.tensor(5.0, requires_grad=True)
+
 
 # Step 2: Inside a "with torch.no_grad():" block, compute y_no_grad = x3 * 2.
 #         Print y_no_grad.requires_grad — should be False.
 y_no_grad = None
+with torch.no_grad():
+    y_no_grad = x3 * 2
+    print("\nTask 4: torch.no_grad()")
+    print(y_no_grad.requires_grad)
+    
 
 # Step 3: Outside the block, compute z_with_grad = x3 * 2.
 #         Print z_with_grad.requires_grad — should be True.
@@ -86,7 +96,9 @@ y_no_grad = None
 # This demonstrates how no_grad() prevents gradient tracking.
 # You will use this during model evaluation in later exercises
 # to save memory and computation.
-z_with_grad = None
+z_with_grad =  x3 * 2
+print(z_with_grad.requires_grad)
+
 
 
 # ===========================================================================
