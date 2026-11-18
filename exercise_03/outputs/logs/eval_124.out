@@ -1,0 +1,35 @@
+Loaded checkpoint from epoch 12 (val_accuracy=0.0968)
+Model parameters: 102,602
+Evaluating on test set (413 images)...
+
+  [TEST] Results:
+  Overall Accuracy: 0.3366 (139/413)
+
+  Per-class results:
+  Class                         Acc    Prec  Recall      F1   Count
+  --------------------------------------------------------------
+  apple_leaf                 0.2727  0.3750  0.2727  0.3158      44
+  basil_leaf                 0.6441  0.4578  0.6441  0.5352      59
+  cabbage_leaf               0.8696  0.2740  0.8696  0.4167      46
+  citrus_canker              0.3019  0.3200  0.3019  0.3107      53
+  cucumber_leaf              0.0000  0.0000  0.0000  0.0000      34
+  grape_downy_mildew         0.2821  0.2558  0.2821  0.2683      39
+  maple_leaf                 0.1935  0.3158  0.1935  0.2400      31
+  plum_leaf                  0.0625  0.5000  0.0625  0.1111      32
+  squash_leaf                0.2683  0.4400  0.2683  0.3333      41
+  tomato_early_blight        0.0882  0.3000  0.0882  0.1364      34
+  --------------------------------------------------------------
+  Macro Average                      0.3238  0.2983  0.2667
+
+  Confusion Matrix (rows = true, columns = predicted):
+                                apple_leaf          basil_leaf        cabbage_leaf       citrus_canker       cucumber_leaf  grape_downy_mildew          maple_leaf           plum_leaf         squash_leaf tomato_early_blight 
+  apple_leaf                            12                   9                  13                   6                   0                   0                   3                   0                   0                   1 
+  basil_leaf                             3                  38                  12                   4                   0                   0                   0                   0                   2                   0 
+  cabbage_leaf                           0                   3                  40                   0                   0                   2                   1                   0                   0                   0 
+  citrus_canker                          3                   6                  13                  16                   0                   8                   4                   0                   1                   2 
+  cucumber_leaf                          4                   6                  12                   3                   0                   5                   1                   0                   3                   0 
+  grape_downy_mildew                     2                   5                  10                   5                   1                  11                   2                   0                   1                   2 
+  maple_leaf                             2                   8                   8                   4                   0                   0                   6                   2                   1                   0 
+  plum_leaf                              4                   4                  10                   3                   0                   2                   2                   2                   3                   2 
+  squash_leaf                            0                   4                  19                   2                   0                   5                   0                   0                  11                   0 
+  tomato_early_blight                    2                   0                   9                   7                   0                  10                   0                   0                   3                   3 
